@@ -6,18 +6,44 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Yuan Fayang&#39;s Blog</title>
+  <title>MySQL学习笔记 | Yuan Fayang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最可怕的不是有人比你优秀，而是比你优秀的人还比你更努力">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yuan Fayang&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="mysql学习笔记整理">
+<meta name="keywords" content="数据库,mysql,后端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/02/27/mysql学习笔记/index.html">
 <meta property="og:site_name" content="Yuan Fayang&#39;s Blog">
-<meta property="og:description" content="最可怕的不是有人比你优秀，而是比你优秀的人还比你更努力">
+<meta property="og:description" content="mysql学习笔记整理">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/where%E8%AF%AD%E5%8F%A5%E9%99%90%E5%AE%9A.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/and%E5%92%8Cor%E7%9A%84%E6%AC%A1%E5%BA%8F.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/mysq_or%E5%92%8C%E5%8D%95%E4%B8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E6%AF%94%E8%BE%83.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E7%B1%BB.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%AE%9A%E4%BD%8D%E7%AC%A6.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/having.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/where%E5%92%8Chaving%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%88%86%E7%BB%84%E4%B8%8E%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%AD%90%E6%9F%A5%E8%AF%A2.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5%E4%BD%BF%E7%94%A8%E5%AD%90%E6%9F%A5%E8%AF%A2.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E8%81%94%E7%BB%93%E6%9F%A5%E8%AF%A2.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%A4%96%E8%81%94%E7%BB%93.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/lianjiezhongshiyongjuji.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/union.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/WX20170228-104249.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/bool%E6%96%87%E6%9C%AC%E6%90%9C%E7%B4%A2.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%85%A8%E6%96%87%E6%9C%AC%E5%B8%83%E5%B0%94%E6%93%8D%E4%BD%9C%E7%AC%A6.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/createprocedure.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%85%B3%E4%BA%8E%E5%88%86%E9%9A%94%E7%AC%A6.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/fengefu2.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E5%88%9B%E5%BB%BA%E8%A7%A6%E5%8F%91%E5%99%A8.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%87%A0%E4%B8%AA%E6%9C%AF%E8%AF%AD.png">
+<meta property="og:updated_time" content="2017-12-04T07:49:11.509Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuan Fayang&#39;s Blog">
-<meta name="twitter:description" content="最可怕的不是有人比你优秀，而是比你优秀的人还比你更努力">
+<meta name="twitter:title" content="MySQL学习笔记">
+<meta name="twitter:description" content="mysql学习笔记整理">
+<meta name="twitter:image" content="http://7xpayt.com1.z0.glb.clouddn.com/where%E8%AF%AD%E5%8F%A5%E9%99%90%E5%AE%9A.png">
   
     <link rel="alternative" href="/atom.xml" title="Yuan Fayang&#39;s Blog" type="application/atom+xml">
   
@@ -157,179 +183,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-mysql学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/04/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/04/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-04T09:22:07.077Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/04/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-记一次Netty+TCP网关内存泄漏事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/04/记一次Netty+TCP网关内存泄漏事件/">记一次Netty TCP网关内存溢出事件</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/04/记一次Netty+TCP网关内存泄漏事件/" class="archive-article-date">
-  	<time datetime="2017-12-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/04/记一次Netty+TCP网关内存泄漏事件/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/27/mysql学习笔记/">MySQL学习笔记</a>
+    <h1 class="article-title" itemprop="name">
+      MySQL学习笔记
     </h1>
   
 
@@ -601,6 +462,27 @@ and prod_id=&#39;FB&#39;;</code></p>
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -638,16 +520,84 @@ and prod_id=&#39;FB&#39;;</code></p>
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/27/mysql学习笔记/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/02/27/mysql学习笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/12/04/记一次Netty+TCP网关内存泄漏事件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          记一次Netty TCP网关内存溢出事件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/07/SpringBoot-Quartz-实现任务调度/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringBoot Quartz 实现任务调度</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -667,76 +617,14 @@ and prod_id=&#39;FB&#39;;</code></p>
 
 
 
-
   
-    <article id="post-SpringBoot-Quartz-实现任务调度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/SpringBoot-Quartz-实现任务调度/">SpringBoot Quartz 实现任务调度</a>
-    </h1>
   
 
-        
-        <a href="/2016/08/07/SpringBoot-Quartz-实现任务调度/" class="archive-article-date">
-  	<time datetime="2016-08-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1.添加依赖"></a>1.添加依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--quartz schedule--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz-jobs<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-配置Quartz"><a href="#2-配置Quartz" class="headerlink" title="2.配置Quartz"></a>2.配置Quartz</h3><p>这里，在resources文件夹下添加quartz.properties。官网有详细配置说明,这里只配置需要的，其他的按需要添加。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">org.quartz.scheduler.instanceName = InventoryScheduler</span><br><span class="line">org.quartz.scheduler.instanceId=AUTO</span><br><span class="line">org.quartz.threadPool.threadCount=5</span><br><span class="line">org.quartz.scheduler.threadName=Inventory_QuartzSchedulerThread</span><br><span class="line"></span><br><span class="line">org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX</span><br><span class="line">org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate</span><br><span class="line">org.quartz.jobStore.useProperties=true</span><br><span class="line">org.quartz.jobStore.tablePrefix=QRTZ_</span><br><span class="line"></span><br><span class="line">org.quartz.jobStore.isClustered=true</span><br><span class="line">org.quartz.jobStore.clusterCheckinInterval=20000</span><br></pre></td></tr></table></figure></p>
-<h3 id="3-为Quartz添加Autowire支持"><a href="#3-为Quartz添加Autowire支持" class="headerlink" title="3.为Quartz添加Autowire支持"></a>3.为Quartz添加Autowire支持</h3><p>新建java文件AutowiringSpringBeanJobFactory继承SpringBeanJobFactory实现ApplicationContextAware接口。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.changhong.ssc.boot.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.quartz.spi.TriggerFiredBundle;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.config.AutowireCapableBeanFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContextAware;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.SpringBeanJobFactory;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Adds autowiring support to quartz jobs.</span></span><br><span class="line"><span class="comment"> * Created by david on 2015-01-20.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> https://gist.github.com/jelies/5085593</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">AutowiringSpringBeanJobFactory</span> <span class="keyword">extends</span> <span class="title">SpringBeanJobFactory</span> <span class="keyword">implements</span></span></span><br><span class="line"><span class="class">        <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> AutowireCapableBeanFactory beanFactory;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(<span class="keyword">final</span> ApplicationContext context)</span> </span>&#123;</span><br><span class="line">        beanFactory = context.getAutowireCapableBeanFactory();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">createJobInstance</span><span class="params">(<span class="keyword">final</span> TriggerFiredBundle bundle)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Object job = <span class="keyword">super</span>.createJobInstance(bundle);</span><br><span class="line">        beanFactory.autowireBean(job);</span><br><span class="line">        <span class="keyword">return</span> job;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="4-创建一个示例任务"><a href="#4-创建一个示例任务" class="headerlink" title="4.创建一个示例任务"></a>4.创建一个示例任务</h3><p>创建测试任务类SampleJob以及用于测试service—SampleService<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.changhong.ssc.boot.job;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.changhong.ssc.boot.service.SampleService;</span><br><span class="line"><span class="keyword">import</span> org.quartz.Job;</span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;</span><br><span class="line"><span class="keyword">import</span> org.quartz.JobExecutionException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span> : com.changhong.ssc.boot.job</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> : Fayang Yuan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Email</span> : fayang.yuan@changhong.com ,flyyuanfayang@sina.com</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> : 2016/11/25</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Time</span> : 上午11:08</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> :</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SampleJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SampleService sampleService;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;</span><br><span class="line">        sampleService.hello();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.changhong.ssc.boot.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span> : com.changhong.ssc.boot.service</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> : Fayang Yuan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Email</span> : fayang.yuan@changhong.com ,flyyuanfayang@sina.com</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> : 2016/11/25</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Time</span> : 上午11:09</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> :</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SampleService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG = LoggerFactory.getLogger(SampleService.class);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        LOG.info(<span class="string">"Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-将Quartz配置到Spring-Boot中"><a href="#5-将Quartz配置到Spring-Boot中" class="headerlink" title="5.将Quartz配置到Spring Boot中"></a>5.将Quartz配置到Spring Boot中</h3><p>新建java类ScheduleConfig，定义SchedulerFactoryBean。这是重要一步。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.changhong.ssc.boot.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.changhong.ssc.boot.job.SampleJob;</span><br><span class="line"><span class="keyword">import</span> org.quartz.JobDetail;</span><br><span class="line"><span class="keyword">import</span> org.quartz.SimpleTrigger;</span><br><span class="line"><span class="keyword">import</span> org.quartz.Trigger;</span><br><span class="line"><span class="keyword">import</span> org.quartz.spi.JobFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.JobDetailFactoryBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.SchedulerFactoryBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span> : com.changhong.ssc.boot.config</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> : Fayang Yuan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Email</span> : fayang.yuan@changhong.com ,flyyuanfayang@sina.com</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> : 2016/11/24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Time</span> : 下午4:31</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> : quartz任务调度的配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduleConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * JobFactory</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> applicationContext</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JobFactory <span class="title">jobFactory</span><span class="params">(ApplicationContext applicationContext)</span></span>&#123;</span><br><span class="line">        AutowiringSpringBeanJobFactory jobFactory = <span class="keyword">new</span> AutowiringSpringBeanJobFactory();</span><br><span class="line">        jobFactory.setApplicationContext(applicationContext);</span><br><span class="line">        <span class="keyword">return</span> jobFactory;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * SchedulerFactoryBean</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dataSource</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SchedulerFactoryBean <span class="title">schedulerFactoryBean</span><span class="params">(DataSource dataSource,JobFactory jobFactory,Trigger sampleJobTrigger)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        SchedulerFactoryBean factory = <span class="keyword">new</span> SchedulerFactoryBean();</span><br><span class="line">        <span class="comment">// this allows to update triggers in DB when updating settings in config file:</span></span><br><span class="line">        factory.setOverwriteExistingJobs(<span class="keyword">true</span>);</span><br><span class="line">        factory.setDataSource(dataSource);</span><br><span class="line">        factory.setJobFactory(jobFactory);</span><br><span class="line">       <span class="comment">// factory.setQuartzProperties(quartzProperties());</span></span><br><span class="line">        factory.setTriggers(sampleJobTrigger);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JobDetailFactoryBean <span class="title">jobDetailFactoryBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> createJobDetail(SampleJob.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span>(name = <span class="string">"sampleJobTrigger"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> SimpleTriggerFactoryBean <span class="title">simpleTriggerFactoryBean</span><span class="params">(JobDetail jobDetail)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> createTrigger(jobDetail,<span class="number">2000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> JobDetailFactoryBean <span class="title">createJobDetail</span><span class="params">(Class jobClass)</span> </span>&#123;</span><br><span class="line">        JobDetailFactoryBean factoryBean = <span class="keyword">new</span> JobDetailFactoryBean();</span><br><span class="line">        factoryBean.setJobClass(jobClass);</span><br><span class="line">        <span class="comment">// job has to be durable to be stored in DB:</span></span><br><span class="line">        factoryBean.setDurability(<span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">return</span> factoryBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> SimpleTriggerFactoryBean <span class="title">createTrigger</span><span class="params">(JobDetail jobDetail, <span class="keyword">long</span> pollFrequencyMs)</span> </span>&#123;</span><br><span class="line">        SimpleTriggerFactoryBean factoryBean = <span class="keyword">new</span> SimpleTriggerFactoryBean();</span><br><span class="line">        factoryBean.setJobDetail(jobDetail);</span><br><span class="line">        factoryBean.setStartDelay(<span class="number">0L</span>);</span><br><span class="line">        factoryBean.setRepeatInterval(pollFrequencyMs);</span><br><span class="line">        factoryBean.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);</span><br><span class="line">        <span class="comment">// in case of misfire, ignore all missed triggers and continue :</span></span><br><span class="line">        factoryBean.setMisfireInstruction(SimpleTrigger.MISFIRE_INSTRUCTION_RESCHEDULE_NEXT_WITH_REMAINING_COUNT);</span><br><span class="line">        <span class="keyword">return</span> factoryBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/07/SpringBoot-Quartz-实现任务调度/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  
 
   
+
   
 
 
@@ -759,8 +647,8 @@ and prod_id=&#39;FB&#39;;</code></p>
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
