@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0.png">
 <meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/%E5%8D%95%E4%B8%80%E5%AE%A2%E6%88%B7%E7%AB%AFtcpdump.png">
 <meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/QQ%E6%88%AA%E5%9B%BE20171204090457.png">
-<meta property="og:updated_time" content="2017-12-08T09:25:19.273Z">
+<meta property="og:updated_time" content="2017-12-08T09:31:07.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty系列:记一次Netty TCP网关内存异常事件">
 <meta name="twitter:description" content="本文记录了一次Netty在物联网中做为TCP长连接网关在压测过成功内存超高，最终导致服务瘫痪的过程。及笔者跟踪解决问题的全过程。">
@@ -181,7 +181,10 @@
 <p><img src="http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/%E5%8D%95%E4%B8%80%E5%AE%A2%E6%88%B7%E7%AB%AFtcpdump.png" alt="tcpdump"></p>
 <h3 id="4-问题解决"><a href="#4-问题解决" class="headerlink" title="4.问题解决"></a>4.问题解决</h3><p>至此，笔者虽然不敢认定发现了全部的症结所在，但是至少能确定发现了其中的一部分问题。于是协调测试人员修改模拟终端，接受网关的心跳报文。最终结果是，不管是在1个终端，还是多个模拟终端压测的情况下，都不会出现channel不可写入，写出缓冲区积压的情况，TCP收发都很正常。但是让笔者和测试人员无解的是，服务器内存还是会以比较缓慢的速度升高。总的来说，尖锐的引起服务瘫痪的问题，已经处理了。缓慢上升会不会导致资源耗尽？会不会引起服务瘫痪？还需要更长时间，更加充分的测试。笔者虽然不爽，但也只有将它列为下一个目标，发誓全面抗战到底！  </p>
 <p><img src="http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/QQ%E6%88%AA%E5%9B%BE20171204090457.png" alt="服务器内存升高"></p>
-<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>虽然本次压测暴露出来的问题，很大程度上是因为模拟终端不处理TCP收包。但是作为网关服务端，就稳定和健壮性方面考虑，还是应该在执行writeAndFlush之前，对channel的写入状态，缓冲区的状态进行检测，并添加相应的容错机制。虽然正式应用场景下，不会有终端不收包的情况，但是仍然存在着网络不畅，终端处理不过来等情况可能引起缓存积压。<br>Netty的<code>writeAndFlush()</code>，会默认创建一个DefaultChannelPromise（如下代码所示），如果不需要ChannelFuture,可是调用时传入一个VoidChannelPromise，具体操作可以调用channel的<code>voidPromise()</code>api(示例：<code>ctx.writeAndFlush(byteBuf,channel.voidPromise()</code>)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public ChannelFuture writeAndFlush(Object msg) &#123;</span><br><span class="line">    return writeAndFlush(msg, newPromise());</span><br><span class="line">&#125;</span><br><span class="line"> @Override</span><br><span class="line">public ChannelPromise newPromise() &#123;</span><br><span class="line">    return new DefaultChannelPromise(channel(), executor());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><ul>
+<li>虽然本次压测暴露出来的问题，很大程度上是因为模拟终端不处理TCP收包。但是作为网关服务端，就稳定和健壮性方面考虑，还是应该在执行writeAndFlush之前，对channel的写入状态，缓冲区的状态进行检测，并添加相应的容错机制。虽然正式应用场景下，不会有终端不收包的情况，但是仍然存在着网络不畅，终端处理不过来等情况可能引起缓存积压。</li>
+<li>Netty的<code>writeAndFlush()</code>，会默认创建一个<code>DefaultChannelPromise</code>（如下代码所示），如果不需要<code>ChannelFuture</code>,可是调用时传入一个<code>VoidChannelPromise</code>，具体操作可以调用channel的<code>voidPromise()</code>api(示例：<code>ctx.writeAndFlush(byteBuf,channel.voidPromise()</code>)。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public ChannelFuture writeAndFlush(Object msg) &#123;</span><br><span class="line">    return writeAndFlush(msg, newPromise());</span><br><span class="line">&#125;</span><br><span class="line"> @Override</span><br><span class="line">public ChannelPromise newPromise() &#123;</span><br><span class="line">    return new DefaultChannelPromise(channel(), executor());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 
         </div>
         <div class="post-reply">
@@ -240,7 +243,7 @@
         <br>
         Copyright © 袁发洋 2017
         <br>
-        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
       </div>
     </div>
   </div>
