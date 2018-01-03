@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Tigase系列：Tigase集群化及负载均衡实施笔记 | Yuan Fayang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="详细解析Tigase的集群化实施过程和负载均衡配置。">
+<meta name="keywords" content="Java,XMPP,Tigase,即时通信技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tigase系列：Tigase集群化及负载均衡实施笔记">
+<meta property="og:url" content="http://yoursite.com/2018/01/03/Tigase集群实施/index.html">
+<meta property="og:site_name" content="Yuan Fayang&#39;s Blog">
+<meta property="og:description" content="详细解析Tigase的集群化实施过程和负载均衡配置。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com//blog/Tigase%E9%9B%86%E7%BE%A4%E5%8C%96%E5%8F%8A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E6%96%BD%E7%AC%94%E8%AE%B0/tigase%20hostname%E9%94%99%E8%AF%AF.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com//blog/Tigase%E9%9B%86%E7%BE%A4%E5%8C%96%E5%8F%8A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E6%96%BD%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%99%E8%AF%AF%E9%85%8D%E7%BD%AE%E9%A1%B9.png">
+<meta property="og:image" content="http://7xpayt.com1.z0.glb.clouddn.com//blog/Tigase%E9%9B%86%E7%BE%A4%E5%8C%96%E5%8F%8A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E6%96%BD%E7%AC%94%E8%AE%B0/%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.png">
+<meta property="og:updated_time" content="2018-01-03T13:17:28.042Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tigase系列：Tigase集群化及负载均衡实施笔记">
+<meta name="twitter:description" content="详细解析Tigase的集群化实施过程和负载均衡配置。">
+<meta name="twitter:image" content="http://7xpayt.com1.z0.glb.clouddn.com//blog/Tigase%E9%9B%86%E7%BE%A4%E5%8C%96%E5%8F%8A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E6%96%BD%E7%AC%94%E8%AE%B0/tigase%20hostname%E9%94%99%E8%AF%AF.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Yuan Fayang&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/layout.css">
+  
+
+</head>
+
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Nemo Yuan</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item" href="/about">
+                About
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="/">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="/about">
+                About
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Tigase系列：Tigase集群化及负载均衡实施笔记</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="http://7xpayt.com1.z0.glb.clouddn.com/bug%E6%9D%A5%E4%BA%86.jpg">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Nemo Yuan</span>
+                <span class="post-date sub-title">at: 2018-01-03</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/Java/">Java</a>
+                    
+                         <a class="tag is-post-tag" href="/tags/XMPP/">XMPP</a>
+                    
+                         <a class="tag is-post-tag" href="/tags/Tigase/">Tigase</a>
+                    
+                         <a class="tag is-post-tag" href="/tags/即时通信技术/">即时通信技术</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <p>Tigase是一个完全实现了XMPP协议的开源即时聊天服务器，官方号称单台并发可达50W。从数据上看，性能出众，远远优于同类的Openfire。但是通常，处于高可用性方面考虑，还是会考虑集群化。本文将详细记叙笔者在测试环境尝试集群化部署Tigase，为上生产环境踩坑的全过程。</p>
+<h3 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h3><p>硬件环境:<br>CentOS 6.5<br>软件环境:<br>JDK 1.8.0_141-b15<br>MySQL 5.7.19(也可以是其他支持的数据库)<br>Tigase-server-7.1.0<br>PSI（Tigase官方的桌面客户端）</p>
+<h3 id="2-配置并启动Tigase"><a href="#2-配置并启动Tigase" class="headerlink" title="2. 配置并启动Tigase"></a>2. 配置并启动Tigase</h3><p>配置文件etc/init.properties配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">config-type=--gen-config-def</span><br><span class="line"></span><br><span class="line">--virt-hosts=speaker.im</span><br><span class="line">--admins=admin@speaker.im</span><br><span class="line"></span><br><span class="line">http/setup/admin-credentials=admin:admin</span><br><span class="line"></span><br><span class="line">--debug=server,xmpp.impl,pubsub</span><br><span class="line"></span><br><span class="line">--user-db-uri=jdbc:mysql://172.19.2.161/tigase?user=tigase&amp;password=Tigase_1&amp;&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;autoCreateUser=true</span><br><span class="line"></span><br><span class="line">--tigase-config-repo-class=tigase.conf.ConfigSQLRepository</span><br><span class="line">--tigase-config-repo-uri=jdbc:mysql://172.19.2.161/tigase?user=tigase&amp;password=Tigase_1&amp;&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;autoCreateUser=true</span><br><span class="line"></span><br><span class="line">--sm-plugins=+jabber\:iq\:auth,+urn\:ietf\:params\:xml\:ns\:xmpp-sasl,+urn\:ietf\:params\:xml\:ns\:xmpp-bind,+urn\:ietf\:params\:xml\:ns\:xmpp-session,+jabber\:iq\:register,+jabber\:iq\:roster,+presence-state,+presence-subscription,+basic-filter,+jabber\:iq\:privacy,+jabber\:iq\:version,+http\://jabber.org/protocol/stats,+starttls,-msgoffline,+vcard-temp,+http\://jabber.org/protocol/commands,+jabber\:iq\:private,+urn\:xmpp\:ping,+pep,+zlib,+message-archive-xep-0136,+amp,+presence-offline,+Mobile_V1,message-archive-xep-0136</span><br><span class="line"></span><br><span class="line">--comp-name-1=muc</span><br><span class="line">--comp-class-1=tigase.muc.MUCComponent</span><br><span class="line"></span><br><span class="line">--comp-name-2=pubsub</span><br><span class="line">--comp-class-2=tigase.pubsub.PubSubComponent</span><br><span class="line"></span><br><span class="line">--comp-name-3=http</span><br><span class="line">--comp-class-3=tigase.http.HttpMessageReceiver</span><br><span class="line"></span><br><span class="line">--comp-name-4=stun</span><br><span class="line">--comp-class-4=tigase.stun.StunComponent</span><br><span class="line"></span><br><span class="line">--comp-name-5=socks5</span><br><span class="line">--comp-class-5=tigase.socks5.Socks5Component</span><br><span class="line"></span><br><span class="line">#保存聊天记录</span><br><span class="line">--comp-name-6=message-archive</span><br><span class="line">--comp-class-6=tigase.archive.MessageArchiveComponent</span><br><span class="line"></span><br><span class="line">--data-repo-pool-size=5</span><br><span class="line"></span><br><span class="line"># message-archive-xep-0136  [message|body]</span><br><span class="line">#指定消息归档的component</span><br><span class="line">message-archiving/tags-support[B]=true</span><br><span class="line">sess-man/plugins-conf/unified-archive/msg-archive-paths[s]=/message/body,/message/subject</span><br><span class="line">#store-muc-messages</span><br><span class="line">sess-man/plugins-conf/message-archive-xep-0136/store-muc-messages=user</span><br><span class="line">#Purging Information from Message Archive</span><br><span class="line">message-archive/remove-expired-messages[B]=true</span><br><span class="line">message-archive/remove-expired-messages-delay=PT1H</span><br><span class="line">message-archive/remove-expired-messages-period=PT1D</span><br><span class="line">#offline message</span><br><span class="line">sess-man/plugins-conf/amp/store-limit[L]=100</span><br><span class="line">amp/store-limit[L]=100</span><br><span class="line">sess-man/plugins-conf/amp/user-store-limit-enable[B]=true</span><br><span class="line">amp/user-store-limit-enable[B]=true</span><br><span class="line"></span><br><span class="line">#MUC配置</span><br><span class="line">##聊天日志存储路径</span><br><span class="line">muc/room-log-directory=/home/app/tigase/tigase-server-7.1.0-b4379/logs/muc</span><br><span class="line">##过滤器配置：是否允许MUC传输所有子元素</span><br><span class="line">muc/message-filter-enabled[B]=false</span><br><span class="line"></span><br><span class="line">#server monitor</span><br><span class="line">--monitoring=jmx:9050,http:9080,snmp:9060</span><br></pre></td></tr></table></figure></p>
+<p>笔者两台服务器的ip分别是：172.19.2.157和172.9.2.168，数据库是用的事先准备好的172.19.2.161上的。在157和168上分别按上述配置Tigase，并启动Tigase，用PSI测试，两台均正常运行。</p>
+<h3 id="3-配置cluster模式"><a href="#3-配置cluster模式" class="headerlink" title="3. 配置cluster模式"></a>3. 配置cluster模式</h3><p>参照官方文档，在刚才的配置中添加配置项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#cluster settging</span><br><span class="line">--cluster-mode=true</span><br><span class="line">--cluster-connect-all=true</span><br><span class="line">--cluster-nodes=node1.speaker.im,node2.speaker.im</span><br></pre></td></tr></table></figure></p>
+<p>关于Tigase的集群配置，还有其他参数，可以根据需要参照官方文档进行选择配置。和许多支持集群的开源组件一样，tigase的集群配置实际上不复杂，只需要保证节点的配置一致，可以互相发现就可以了。只是笔者在配置的时候踩了一个小小的坑：<br><img src="http://7xpayt.com1.z0.glb.clouddn.com//blog/Tigase%E9%9B%86%E7%BE%A4%E5%8C%96%E5%8F%8A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E6%96%BD%E7%AC%94%E8%AE%B0/tigase%20hostname%E9%94%99%E8%AF%AF.png" alt="Tigase hostname注册错误"><br>启动时<code>tigase-console.log</code>中错误提示以<code>localhost</code>注册主机名出错。仔细查了官方文档，只有为服务配置vhost，但是并没有为其配置hostname的配置项。<br>不同节点之间是通过<code>--cluster-nodes</code>发现对方，在笔者的服务器网络环境中，两台服务器同属内网，中间并没有DNS，所以要么使用ip，要么修改hosts：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">172.19.2.157 node1.speaker.im</span><br><span class="line">172.19.2.168 node2.speaker.im</span><br></pre></td></tr></table></figure></p>
+<p>下面回到上面的问题。由于Tigase在启动的时候回调用系统的hostname注册到数据库。所以在未给服务器设置主机名称是，势必会使用默认的localhost注册为服务名称（如下图）。一次就需要再一次修改hosts文件。<br><img src="http://7xpayt.com1.z0.glb.clouddn.com//blog/Tigase%E9%9B%86%E7%BE%A4%E5%8C%96%E5%8F%8A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E6%96%BD%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%94%99%E8%AF%AF%E9%85%8D%E7%BD%AE%E9%A1%B9.png" alt="数据库错误配置"><br>168设置为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 node2.speaker.im  localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1       node2.spealer.im  localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br></pre></td></tr></table></figure></p>
+<p>157设置为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 node1.speaker.im  localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1       node1.spealer.im  localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br></pre></td></tr></table></figure></p>
+<p>再次启动两台服务器，两边都能顺利运行了，数据库<code>tigase-configuration</code>中也有了正确的配置项。168上运行命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsof -iTCP:5277 -sTCP:ESTABLISHED -P -n</span><br></pre></td></tr></table></figure></p>
+<p>出现如下结果:</p>
+<p><img src="http://7xpayt.com1.z0.glb.clouddn.com//blog/Tigase%E9%9B%86%E7%BE%A4%E5%8C%96%E5%8F%8A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E6%96%BD%E7%AC%94%E8%AE%B0/%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.png" alt="集群节点连接"></p>
+<p>157上运行也出现相同结果，说明两个节点之间已经有了通信。</p>
+
+        </div>
+        <div class="post-reply">
+            
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © 袁发洋 2018
+        <br>
+        Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/search_core.js"></script>
+<script src="/js/script.js"></script>
+
+</body>
+</html>

@@ -131,33 +131,35 @@
                 
 <div class="primary-container content-box is-flex-desktop clear-padding bottom-line" style="margin-bottom: 25px;">
     <div class="column  is-7-desktop">
-        <a href="/2017/12/04/记一次Netty+TCP网关内存泄漏事件/">
+        <a href="/2018/01/03/Tigase集群实施/">
             <div class="full-height post-hover"
                  style="
-                         background-image: url('http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/dump%E5%BF%AB%E7%85%A7.png');
+                         background-image: url('http://7xpayt.com1.z0.glb.clouddn.com//blog/Tigase%E9%9B%86%E7%BE%A4%E5%8C%96%E5%8F%8A%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E6%96%BD%E7%AC%94%E8%AE%B0/tigase%20hostname%E9%94%99%E8%AF%AF.png');
                          height: 350px;
                          background-size: cover;
                          background-repeat: no-repeat;
                          ">
                     <div class=" is-flex flex-column center content has-text-centered full-height has-padding content-bg-mask">
                         <h1 class="title text-shadow" style="margin-bottom: 15px;">
-                            Netty系列:记一次Netty TCP网关内存异常事件
+                            Tigase系列：Tigase集群化及负载均衡实施笔记
                         </h1>
                         <div>
                         
                             `
                                 <span class="tag is-post-tag">Java</span>
                             `
-                                <span class="tag is-post-tag">Netty</span>
+                                <span class="tag is-post-tag">XMPP</span>
                             `
-                                <span class="tag is-post-tag">TCP</span>
+                                <span class="tag is-post-tag">Tigase</span>
+                            `
+                                <span class="tag is-post-tag">即时通信技术</span>
                             
                         
                         </div>
                         <p class="post-content-text is-marginless has-padding text-shadow">
-                            1.问题出现笔者在一个设备控制类型项目中用到了Netty做TCP长连接网关，至于Netty的优势和选择的Netty的理由笔者就不在此赘述。本文主要目的是描述在这次项目过程中遇到的网关服务器内存超高现象，以及笔者整个排查和处理过程。事件的..
+                            Tigase是一个完全实现了XMPP协议的开源即时聊天服务器，官方号称单台并发可达50W。从数据上看，性能出众，远远优于同类的Openfire。但是通常，处于高可用性方面考虑，还是会考虑集群化。本文将详细记叙笔者在测试环境尝试集群化部署..
                         </p>
-                        <p class="date text-shadow">2017-12-04</p>
+                        <p class="date text-shadow">2018-01-03</p>
                         <button class="button is-info is-small">Read More</button>
                     </div>
             </div>
@@ -167,6 +169,32 @@
         <div class="full-height is-flex flex-column justify-space-between" style="min-height: 350px;">
             
                 
+<a class="post-hover" href="/2017/12/04/记一次Netty+TCP网关内存泄漏事件/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/dump%E5%BF%AB%E7%85%A7.png')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                Netty系列:记一次Netty TCP网关内存异常事件
+            </h3>
+            
+            
+            <span class="tag is-post-tag">Java</span>
+            
+            <span class="tag is-post-tag">Netty</span>
+            
+            <span class="tag is-post-tag">TCP</span>
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                1.问题出现笔者在一个设备控制类型项目中用到了Netty做TCP长连接网关，至于Netty的优势..
+            </p>
+            <p class="date text-shadow is-marginless">2017-12-04</p>
+        </div>
+    </div>
+</a>
+            
+            
+                
 <a class="post-hover" href="/2017/02/27/mysql学习笔记/" style="height: 48.5%">
     <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('http://7xpayt.com1.z0.glb.clouddn.com/where%E8%AF%AD%E5%8F%A5%E9%99%90%E5%AE%9A.png')">
         <div class="content-bg-mask full-width full-height has-padding">
@@ -189,26 +217,6 @@
 示例源码下载地址：http://www.forta.com..
             </p>
             <p class="date text-shadow is-marginless">2017-02-27</p>
-        </div>
-    </div>
-</a>
-            
-            
-                
-<a class="post-hover" href="/2016/08/07/SpringBoot-Quartz-实现任务调度/" style="height: 48.5%">
-    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
-        <div class="content-bg-mask full-width full-height has-padding">
-            <h3 class="title is-marginless text-shadow">
-                SpringBoot Quartz 实现任务调度
-            </h3>
-            
-            
-            
-            <p class="sub-title text-shadow"></p>
-            <p class="is-marginless text-shadow post-content-text">
-                1.添加依赖1234567891011&lt;!--quartz schedule--&gt;&..
-            </p>
-            <p class="date text-shadow is-marginless">2016-08-07</p>
         </div>
     </div>
 </a>
@@ -218,6 +226,32 @@
     <div class="column is-12 is-hidden-desktop">
         
         
+<a class="post-hover" href="/2017/12/04/记一次Netty+TCP网关内存泄漏事件/" style="height: 48.5%">
+    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/dump%E5%BF%AB%E7%85%A7.png')">
+        <div class="content-bg-mask full-width full-height has-padding">
+            <h3 class="title is-marginless text-shadow">
+                Netty系列:记一次Netty TCP网关内存异常事件
+            </h3>
+            
+            
+            <span class="tag is-post-tag">Java</span>
+            
+            <span class="tag is-post-tag">Netty</span>
+            
+            <span class="tag is-post-tag">TCP</span>
+            
+            
+            <p class="sub-title text-shadow"></p>
+            <p class="is-marginless text-shadow post-content-text">
+                1.问题出现笔者在一个设备控制类型项目中用到了Netty做TCP长连接网关，至于Netty的优势..
+            </p>
+            <p class="date text-shadow is-marginless">2017-12-04</p>
+        </div>
+    </div>
+</a>
+        
+        
+        
 <a class="post-hover" href="/2017/02/27/mysql学习笔记/" style="height: 48.5%">
     <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('http://7xpayt.com1.z0.glb.clouddn.com/where%E8%AF%AD%E5%8F%A5%E9%99%90%E5%AE%9A.png')">
         <div class="content-bg-mask full-width full-height has-padding">
@@ -244,30 +278,44 @@
     </div>
 </a>
         
-        
-        
-<a class="post-hover" href="/2016/08/07/SpringBoot-Quartz-实现任务调度/" style="height: 48.5%">
-    <div class="content is-hidden-touch full-height overflow-hidden" style="background-image: url('')">
-        <div class="content-bg-mask full-width full-height has-padding">
-            <h3 class="title is-marginless text-shadow">
-                SpringBoot Quartz 实现任务调度
-            </h3>
-            
-            
-            
-            <p class="sub-title text-shadow"></p>
-            <p class="is-marginless text-shadow post-content-text">
-                1.添加依赖1234567891011&lt;!--quartz schedule--&gt;&..
-            </p>
-            <p class="date text-shadow is-marginless">2016-08-07</p>
-        </div>
-    </div>
-</a>
-        
     </div>
 </div>
 
                     
+                    
+                
+                    
+                        <div class="content-box  is-hidden-desktop" style="margin-bottom: 27px;">
+                            <a class="post-hover" href="/2017/12/04/记一次Netty+TCP网关内存泄漏事件/">
+                            <div class="columns" style="min-height: 230px;">
+                                
+                                    <div class="column is-4-desktop is-5-tablet post-avatar is-hidden-mobile"
+                                         style="margin: 10px; background-size: cover;background-image: url('http://7xpayt.com1.z0.glb.clouddn.com//blog/%E8%AE%B0%E4%B8%80%E6%AC%A1NettyTCP%E7%BD%91%E5%85%B3%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/dump%E5%BF%AB%E7%85%A7.png')">
+                                    </div>
+                                
+                                <div class="column is-8-desktop post-content is-flex align-center">
+                                    <div class="content">
+                                        <h3>Netty系列:记一次Netty TCP网关内存异常事件</h3>
+                                        
+                                        <p>
+                                            
+                                                <span class="tag is-post-tag">Java</span>
+                                            
+                                                <span class="tag is-post-tag">Netty</span>
+                                            
+                                                <span class="tag is-post-tag">TCP</span>
+                                            
+                                        </p>
+                                        <p>
+                                            1.问题出现笔者在一个设备控制类型项目中用到了Netty做TCP长连接网关，至于Netty的优势和选择的Netty的理由笔者就不在此赘述。本文主要目的是描述在这次项目过程中遇到的网关服务器内存超高现象，以及笔者整个排查和处理过程。事件的经过大体是这样的。笔者基于Netty实现了私有的设备控制协议进行设备控制。待到代码基本稳定之后，笔者联合测试人员准备对网..
+                                        </p>
+                                        <p>2017-12-04</p>
+                                        <button class="button is-small">Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
                     
                 
                     
@@ -315,7 +363,7 @@ AND..
                     
                 
                     
-                        <div class="content-box  is-hidden-desktop" style="margin-bottom: 27px;">
+                        <div class="content-box  " style="margin-bottom: 27px;">
                             <a class="post-hover" href="/2016/08/07/SpringBoot-Quartz-实现任务调度/">
                             <div class="columns" style="min-height: 230px;">
                                 
@@ -368,7 +416,7 @@ AND..
         <!--请您保留作者署名, 主题制作来之不易-->
         Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
         <br>
-        Copyright © 袁发洋 2017
+        Copyright © 袁发洋 2018
         <br>
         Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
       </div>
